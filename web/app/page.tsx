@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TemplatePicker } from "./components/TemplatePicker";
 import { CanvasEditor } from "./components/CanvasEditor";
 import { PaletteBar } from "./components/PaletteBar";
-import type { Layout } from "@/../../src/features/floorplan/types";
+import type { Layout } from "./lib/floorplan/types";
 
 export default function Home() {
   const [currentLayout, setCurrentLayout] = useState<Layout | null>(null);

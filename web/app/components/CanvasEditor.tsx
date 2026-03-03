@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Stage, Layer, Rect, Text, Transformer } from "react-konva";
 import Konva from "konva";
-import type { Layout } from "@/../../src/features/floorplan/types";
+import type { Layout } from "../lib/floorplan/types";
 
 interface CanvasEditorProps {
     layout: Layout;

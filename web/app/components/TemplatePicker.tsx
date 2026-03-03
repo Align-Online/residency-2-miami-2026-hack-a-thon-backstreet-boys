@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { templates } from "@/../../src/features/floorplan/templates";
-import type { Layout } from "@/../../src/features/floorplan/types";
+import { templates } from "../lib/floorplan/templates";
+import type { Layout } from "../lib/floorplan/types";
 
 interface TemplatePickerProps {
     onSelectTemplate: (layout: Layout) => void;

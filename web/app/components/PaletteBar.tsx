@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { Layout } from "@/../../src/features/floorplan/types";
+import type { Layout } from "../lib/floorplan/types";
 
 interface PaletteBarProps {
     layout: Layout;
