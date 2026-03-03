@@ -1,0 +1,34 @@
+name: Generate newsletter weekly
+
+on:
+  schedule:
+    - cron: '0 10 * * FRI'  # every Friday at 10:00 UTC
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Generate newsletter
+        run: |
+          URLS=$(paste -sd ' ' events.txt)
+          python -m newsletter_agent.advanced_cli --urls $URLS --output newsletter_draft.html --images-dir output_images
+      - name: Commit newsletter
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add newsletter_draft.html output_images || true
+          if ! git diff --staged --quiet; then
+            git commit -m "Automated: update newsletter draft" || true
+            git push
+          else
+            echo "No changes to commit"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

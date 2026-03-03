@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LAB Newsletter — Weekly Events</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; }
+    .event { border-bottom: 1px solid #eee; padding: 16px 0; }
+    .event img { max-width: 100%; height: auto; display:block; margin-bottom:8px }
+    .title { font-size: 18px; font-weight: bold; }
+    .date { color: #666; font-size: 13px; }
+    .description { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>LAB Weekly Events</h1>
+  {% for e in events %}
+    <div class="event">
+      {% if e.local_image %}
+        <img src="{{ e.local_image }}" alt="{{ e.title }}" />
+      {% elif e.image %}
+        <img src="{{ e.image }}" alt="{{ e.title }}" />
+      {% endif %}
+      <div class="title"><a href="{{ e.url }}">{{ e.title }}</a></div>
+      {% if e.date %}<div class="date">{{ e.date }}</div>{% endif %}
+      <div class="description">{{ e.description }}</div>
+    </div>
+  {% endfor %}
+</body>
+</html>
